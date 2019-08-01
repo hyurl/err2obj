@@ -1,0 +1,25 @@
+{
+  "name": "err2obj",
+  "version": "1.0.0",
+  "description": "A tiny tool transfer an Error instance to plain object, and vice versa.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyurl/err2obj.git"
+  },
+  "keywords": [
+    "error",
+    "object",
+    "transfer",
+    "json"
+  ],
+  "author": "Ayon Lee <i@hyurl.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hyurl/err2obj/issues"
+  },
+  "homepage": "https://github.com/hyurl/err2obj#readme",
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
+}
