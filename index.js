@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const AssertionError = require("assert").AssertionError;
 const pick = require("lodash/pick");
 const omit = require("lodash/omit");
+const get = require("lodash/get");
 
 const ErrorProps = ["name", "message", "stack"];
 const Errors = {
@@ -17,8 +18,12 @@ const Errors = {
     TypeError: TypeError
 };
 
-if (typeof global === "undefined" && typeof window === "object") {
-    var global = window;
+if (typeof global === "undefined") {
+    if (typeof globalThis === "object") {
+        var global = globalThis;
+    } else if (typeof window === "object") {
+        var global = window;
+    }
 }
 
 function err2obj(err) {
@@ -35,7 +40,7 @@ function obj2err(obj) {
         return obj;
     }
 
-    let ctor = Errors[obj.name] || global[obj.name] || Error;
+    let ctor = Errors[obj.name] || get(global, obj.name) || Error;
     let err = Object.create(ctor.prototype);
 
     for (let prop in obj) {
@@ -54,5 +59,10 @@ function obj2err(obj) {
     return err;
 }
 
+function register(errType) {
+    Errors[errType.name] = errType;
+}
+
 exports.err2obj = err2obj;
 exports.obj2err = obj2err;
+exports.register = register;
