@@ -1,6 +1,6 @@
 {
   "name": "err2obj",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A tiny tool transfer an Error instance to plain object, and vice versa.",
   "main": "index.js",
   "repository": {
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/hyurl/err2obj#readme",
   "dependencies": {
+    "decircularize": "^1.0.0",
     "lodash": "^4.17.15"
   }
 }

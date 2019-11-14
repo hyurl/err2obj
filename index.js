@@ -6,6 +6,7 @@ const AssertionError = require("assert").AssertionError;
 const pick = require("lodash/pick");
 const omit = require("lodash/omit");
 const get = require("lodash/get");
+const decircularize = require("decircularize");
 
 const ErrorProps = ["name", "message", "stack"];
 const Errors = {
@@ -29,7 +30,9 @@ if (typeof global === "undefined") {
 function err2obj(err) {
     if (!(err instanceof Error)) return err;
 
-    return Object.assign({}, pick(err, ErrorProps), omit(err, ErrorProps));
+    return decircularize(
+        Object.assign({}, pick(err, ErrorProps), omit(err, ErrorProps))
+    );
 }
 
 function obj2err(obj) {
